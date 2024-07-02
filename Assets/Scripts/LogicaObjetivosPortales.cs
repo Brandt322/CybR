@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class LogicaObjetivosPortales : MonoBehaviour
 {
     public LogicaNPC npc;
+    public AudioSource transitionPortal;
+    public AudioSource yay;
     // public int numeroObjetivos;
     // public TextMeshProUGUI textoMision;
     // public GameObject botonMision;
@@ -15,7 +17,7 @@ public class LogicaObjetivosPortales : MonoBehaviour
     {
     //    numeroObjetivos = GameObject.FindGameObjectsWithTag("Objetivo").Length;
     //    textoMision.text = "Recolecta todos los portales " +
-    //                         "\n Portales Restantes: " + numeroObjetivos; 
+    //                         "\n Portales Restantes: " + numeroObjetivos;
     }
 
     // Update is called once per frame
@@ -43,9 +45,11 @@ public class LogicaObjetivosPortales : MonoBehaviour
             npc.numeroObjetivos--;
             npc.textoMision.text = "Destruye todos los portales " +
                                 "\n Portales Restantes: " + npc.numeroObjetivos;
+            transitionPortal.Play();
             if(npc.numeroObjetivos <= 0){
                 npc.textoMision.text = "Misión Completada";
                 npc.botonMision.SetActive(true);
+                yay.Play();
             }
             transform.parent.gameObject.SetActive(false);
         }
